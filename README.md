@@ -224,8 +224,8 @@ https://docs.microsoft.com/en-us/sql/connect/odbc/linux-mac/installing-the-micro
 
 ```bash
 gitユーザー名、メールアドレスの登録
-$ git config --global user.name "おーた"
-$ git config --global user.email "ota.yu@mic-p.com"
+$ git config --global user.name "XXX XXX"
+$ git config --global user.email "YYYY@ZZZ.com"
 
 ディレクトリ、ファイル作成、権限設定
 $ mkdir ~/.ssh

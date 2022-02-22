@@ -1,0 +1,22 @@
+version: "3.9"
+services:
+  app:
+    build: ./infra/php
+    volumes:
+      - ./backend:/work
+  web:
+    image: nginx:1.20-alpine
+    ports:
+      - 8080:80
+    volumes:
+      - ./backend:/work
+      - ./infra/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    working_dir: /work
+  db:
+    image: mcr.microsoft.com/mssql/server:2017-latest
+    environment:
+      - ACCEPT_EURA=Y
+    env_file:
+      - sql-server-2017.env
+    ports:
+      - 1433:1433
