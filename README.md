@@ -1,4 +1,4 @@
-# docker-laravel handson
+# Docker 勉強会
 
 ## まえせつ
 
@@ -14,7 +14,7 @@ Docker・・・<font color="red">OS</font>を仮想化（厳密には違うけ�
 
 コンテナはホストOS上で直接起動する単なるプロセスのためOSは必要ない。
 
-通常のプロセスと異なる点は、プロセスのかたまりをグループ化し独立した空間（コンテナ）で動作させる点。
+通常のプロセスと異なるのは、プロセスのかたまりをグループ化し独立した空間（コンテナ）で動作させる点。
 
 ![コンテナの概念図](https://knowledge.sakura.ad.jp/images/2018/01/VM_Container-680x387.jpg)
 
@@ -218,14 +218,14 @@ https://docs.microsoft.com/en-us/sql/connect/odbc/linux-mac/installing-the-micro
 
 
 
-## 4.Docker+Git+Laravel+NginX+Mysql
+## 4.Docker+Git+Laravel+NginX+SQLServer
 
 ### 4-1.Git初期設定
 
 ```bash
 gitユーザー名、メールアドレスの登録
 $ git config --global user.name "XXX XXX"
-$ git config --global user.email "YYYY@ZZZ.com"
+$ git config --global user.email "YYY@ZZZZ.com"
 
 ディレクトリ、ファイル作成、権限設定
 $ mkdir ~/.ssh
@@ -291,12 +291,36 @@ https://gotohayato.com/content/466/
 
 
 
+### 4-3.Laravelを数コマンドで環境構築
+
+```bash
+$ git clone git@github.com:mic-yyg/docker-laravel.git
+Dockerfile、docker-compose.ymlの配布
+※docker-composeは複数のDockerコンテナを操作するためのもの
+
+$ cd docker-laravel
+$ docker compose up -d --build
+コンテナの立ち上げ
+
+$ docker compose exec app bash
+appコンテナの起動後、bashを起動
+[app]$ composer install
+appコンテナ上にLaravelに必要なライブラリをインストール
+[app]$ chmod -R 777 storage bootstrap/cache
+storage、bootstrap/cacheフォルダに最高権限を追加
+[app]$ exit
 ```
-$ git clone git@github.com:mic-yyg/laravel-docker.git
 
-```
+- .envファイルを配布してもらう
+
+- http://127.0.0.1:8080 にアクセス
+- http://127.0.0.1:8080/dbtest にアクセス
 
 
+
+参考
+
+https://qiita.com/ucan-lab/items/56c9dc3cf2e6762672f4
 
 ※docker compose upできない人↓
 
